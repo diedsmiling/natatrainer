@@ -1,0 +1,6 @@
+FROM node:alpine
+WORKDIR '/usr/app'
+ADD package.json yarn.lock /usr/app/
+RUN yarn install
+COPY . .
+CMD ["yarn", "watch"]
