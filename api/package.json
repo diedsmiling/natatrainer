@@ -1,0 +1,33 @@
+{
+  "name": "natatrainer_api",
+  "version": "1.0.0",
+  "description": "Api for natatrainer app",
+  "main": "dist/index.js",
+  "repository": "https://github.com/diedsmiling/natatrainer",
+  "author": "Alexandr Lazarev <diedsmiling@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build-ts": "tsc",
+    "watch": "concurrently -k -p -n \"node,ts\" -c \"green.bold,cyan.bold\" \"yarn watch-node\" \"yarn watch-ts\"",
+    "watch-test": "yarn test -- --watchAll",
+    "watch-ts": "tsc -w",
+    "watch-node": "nodemon",
+    "lint": "yarn eslint-check && yarn typescript-check",
+    "eslint-check": "eslint src/* --ext .js,.ts,.tsx",
+    "typescript-check": "npx tsc --project ./tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "sequelize": "^5.21.7",
+    "typescript": "^3.8.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.6",
+    "@typescript-eslint/eslint-plugin": "^2.30.0",
+    "@typescript-eslint/parser": "^2.30.0",
+    "concurrently": "^5.2.0",
+    "eslint": "^6.8.0",
+    "nodemon": "^2.0.3"
+  }
+}
