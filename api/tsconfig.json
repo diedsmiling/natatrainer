@@ -15,5 +15,5 @@
     "sourceMap": true,
     "inlineSources": true,
   },
-  "include": ["./src/**/*"]
+  "include": ["./src/**/*.ts", "./src/**/*.js", "./src/**/*.json"] 
 }

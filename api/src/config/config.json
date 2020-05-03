@@ -3,7 +3,7 @@
     "username": "root",
     "password": "123456",
     "database": "natatrainer_dev",
-    "host": "127.0.0.1",
+    "host": "mysql",
     "dialect": "mysql",
     "operatorsAliases": false
   },
