@@ -4,10 +4,10 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       notEmpty: true,
-      isNull: false,
+      allowNull: false,
       unique: true
     }
-  }, {});
+  });
   Group.associate = function(models) {
     Group.hasMany(models.Word);
   };
