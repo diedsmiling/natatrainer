@@ -1,6 +1,7 @@
 import * as core from "express-serve-static-core";
 import { Request, Response } from "express";
 import { head } from "lodash";
+import halson from "halson";
 import { CREATED, NOT_FOUND, OK, UNPROCESSABLE_ENTITY } from  "../constants/statusCodes";
 import { conditionalError } from "../helpers";
 import models from "../models";
@@ -9,10 +10,11 @@ function routes(app: core.Express): void {
   app.post("/groups", async (req: Request, res: Response) => {
     const { name } = req.body;
     const Group = new models.Group({ name});
-
+    
     try {
       const result = await Group.save();
-      res.status(CREATED).send(result.get());
+      const resource = halson(result.get()).addLink("self", `/posts/${result.id}`);
+      res.status(CREATED).send(resource);
     } catch(e) {
       const error = head(e.errors);
       const resultedError = conditionalError(error, UNPROCESSABLE_ENTITY);
