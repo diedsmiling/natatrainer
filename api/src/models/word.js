@@ -19,10 +19,6 @@ module.exports = (sequelize, DataTypes) => {
     answered: {
       type: DataTypes.INTEGER,
       defaultValue: 0
-    },
-    failed: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0
     }
   }, {});
   Word.associate = function(models) {

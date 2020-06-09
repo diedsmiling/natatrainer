@@ -7,6 +7,7 @@ import { conditionalError } from "../helpers";
 import models from "../models";
 
 function routes(app: core.Express): void {
+  
   app.post("/words", async (req: Request, res: Response) => {
     const { valueNative, valueForeign, groupId } = req.body;
     const Word = new models.Word({ valueNative, valueForeign, groupId });
@@ -26,19 +27,16 @@ function routes(app: core.Express): void {
   app.patch("/words/:id", async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
-      const { valueNative, valueForeign, groupId, failed, answered } = req.body;
+      const { valueNative, valueForeign, groupId, answered } = req.body;
       const Word = await models.Word.findByPk(id);
       
       if (!Word) {
         res.status(NOT_FOUND).end();
       }
 
-      console.log({ valueNative, valueForeign, groupId, failed, answered });
-
       Word.valueNative = !isNil(valueNative) ? valueNative : Word.valueNative;
       Word.valueForeign = !isNil(valueForeign) ? valueForeign : Word.valueForeign;
       Word.groupId = !isNil(groupId) ? groupId : Word.groupId;
-      Word.failed = !isNil(failed) ? failed : Word.failed;
       Word.answered = !isNil(answered) ? answered : Word.answered;
 
       const result = await Word.save();
